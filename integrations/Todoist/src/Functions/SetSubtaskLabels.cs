@@ -40,10 +40,8 @@ internal sealed class SetSubtaskLabels(ITodoistApi todoist, ILogger<SetSubtaskLa
             return;
         }
 
-        var updatedCount = await todoist.UpdateTasksAsync(
-            tasks,
-            _ => new TodoistUpdateTaskRequest { Labels = [Constants.SubtaskLabel] },
-            cancellationToken: cancellationToken);
+        var updateRequest = new TodoistUpdateTaskRequest { Labels = [Constants.SubtaskLabel] };
+        var updatedCount = await todoist.UpdateTasksAsync(tasks, _ => updateRequest, cancellationToken: cancellationToken);
 
         logger.LogInformation("Updated labels for {UpdatedCount} subtasks.", updatedCount);
     }

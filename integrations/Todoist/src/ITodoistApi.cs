@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Threading;
+using Newtonsoft.Json;
 using Refit;
 
 namespace Integrations.Todoist;
@@ -6,19 +7,25 @@ namespace Integrations.Todoist;
 internal interface ITodoistApi
 {
     [Get("/tasks/filter?query={query}&cursor={cursor}")]
-    Task<TodoistResponse> GetTasksByFilterAsync(string query, string? cursor = null);
+    Task<TodoistResponse> GetTasksByFilterAsync(
+        string query,
+        string? cursor = null,
+        CancellationToken cancellationToken = default);
 
     [Post("/tasks/{taskId}")]
-    Task UpdateTaskAsync(string taskId, [Body] TodoistUpdateTaskRequest request);
+    Task UpdateTaskAsync(
+        string taskId,
+        [Body] TodoistUpdateTaskRequest request,
+        CancellationToken cancellationToken = default);
 }
 
 internal sealed record TodoistResponse(
     IEnumerable<TodoistTask> Results,
-    [JsonProperty(PropertyName="next_cursor")] string NextCursor);
+    [JsonProperty(PropertyName = "next_cursor")] string NextCursor);
 
 internal sealed record TodoistTask(
     string Id,
-    [JsonProperty(PropertyName="parent_id")] string ParentId,
+    [JsonProperty(PropertyName = "parent_id")] string ParentId,
     IEnumerable<string> Labels,
     string Content,
     string Description);

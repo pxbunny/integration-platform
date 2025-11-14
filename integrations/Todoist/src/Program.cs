@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Refit;
 
-var builder = FunctionsApplication.CreateBuilder(args);
+FunctionsApplicationBuilder builder = FunctionsApplication.CreateBuilder(args);
 
 builder.ConfigureFunctionsWebApplication();
 
@@ -20,8 +20,10 @@ builder.Services
         const string baseUrlPropertyName = "TodoistApiBaseUrl";
         const string apiKeyPropertyName = "TodoistApiKey";
 
-        var baseUrl = builder.Configuration[baseUrlPropertyName] ?? throw new ArgumentNullException(baseUrlPropertyName);
-        var apiKey = builder.Configuration[apiKeyPropertyName] ?? throw new ArgumentNullException(apiKeyPropertyName);
+        var baseUrl = builder.Configuration[baseUrlPropertyName]
+                      ?? throw new InvalidOperationException($"'{baseUrlPropertyName}' missing in configuration");
+        var apiKey = builder.Configuration[apiKeyPropertyName]
+                     ?? throw new InvalidOperationException($"'{apiKeyPropertyName}' missing in configuration");
 
         client.BaseAddress = new Uri(baseUrl);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);

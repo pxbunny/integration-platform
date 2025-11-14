@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Integrations.Todoist</AssemblyName>
-    <RootNamespace>Integrations.Todoist</RootNamespace>
+    <RootNamespace>$(AssemblyName)</RootNamespace>
     <AzureFunctionsVersion>V4</AzureFunctionsVersion>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
@@ -15,6 +15,9 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Timer" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" />
+    <PackageReference Include="Refit" />
+    <PackageReference Include="Refit.HttpClientFactory" />
+    <PackageReference Include="Refit.Newtonsoft.Json" />
   </ItemGroup>
 
 </Project>

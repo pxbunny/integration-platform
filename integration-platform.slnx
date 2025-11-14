@@ -1,4 +1,3 @@
 ﻿<Solution>
-  <Project Path="integrations\DriveWork\src\DriveWork.csproj" />
   <Project Path="integrations\Todoist\src\Todoist.csproj" />
 </Solution>

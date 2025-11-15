@@ -1,13 +1,14 @@
 param projectName string
 param integrationName string
 param location string = resourceGroup().location
-
 var resourceName = '${projectName}-${integrationName}'
 
 var storageSuffixLength = 3
+var maxStorageAccountNameLength = 24
+
 var uniqueStorageSuffix = take(uniqueString(subscription().id, location), storageSuffixLength)
 var resourceNameWithoutHyphens = replace(resourceName, '-', '')
-var storageAccountName = 'st${resourceNameWithoutHyphens}${uniqueStorageSuffix}'
+var storageAccountName = take('st${resourceNameWithoutHyphens}${uniqueStorageSuffix}', maxStorageAccountNameLength)
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
   name: storageAccountName

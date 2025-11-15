@@ -1,8 +1,13 @@
 param projectName string
 param location string = resourceGroup().location
 
+var storageSuffixLength = 3
+var uniqueStorageSuffix = take(uniqueString(subscription().id, location), storageSuffixLength)
+var projectNameWithoutHyphens = replace(projectName, '-', '')
+var storageAccountName = 'st${projectNameWithoutHyphens}${uniqueStorageSuffix}'
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
-  name: replace('st${projectName}', '-', '')
+  name: storageAccountName
   location: location
   kind: 'StorageV2'
   sku: {

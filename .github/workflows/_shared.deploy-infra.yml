@@ -8,24 +8,23 @@ jobs:
     name: Build Bicep Infrastructure
     runs-on: ubuntu-latest
     env:
-      WORKING_DIRECTORY: ./shared-infra
+      SHARED_INFRA_DIRECTORY: ./shared-infra
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Validate bicep
-        working-directory: ${{ env.WORKING_DIRECTORY }}
+        working-directory: ${{ env.SHARED_INFRA_DIRECTORY }}
         run: |
           az bicep install
           az bicep build -f shared.bicep
           az bicep build-params -f shared.bicepparam --outfile parameters.json
 
       - name: Upload infrastructure artifact
-        working-directory: ${{ env.WORKING_DIRECTORY }}
         uses: actions/upload-artifact@v4
         with:
           name: infra
-          path: ./*.json
+          path: ${{ env.SHARED_INFRA_DIRECTORY }}/*.json
           if-no-files-found: error
 
   deploy-infrastructure:

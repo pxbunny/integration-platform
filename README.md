@@ -60,7 +60,7 @@ Examples:
 - Private Key for Google Drive integration: `GoogleDrive-GooglePrivateKey`
 
 
-## Notes (should be added to later to the README content above)
+## Notes (should be added later to the README content above)
 
 - github workflow files naming convention
 - github actions - how it works and how to run them

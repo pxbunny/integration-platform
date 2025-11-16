@@ -52,6 +52,10 @@ resource functionApp 'Microsoft.Web/sites@2024-11-01' = {
           value: 'dotnet-isolated'
         }
         {
+          name: 'FUNCTIONS_EXTENSION_VERSION'
+          value: '~4'
+        }
+        {
           name: 'WEBSITE_TIME_ZONE'
           value: timeZone
         }

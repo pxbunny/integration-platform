@@ -88,5 +88,4 @@ resource keyVaultAccessPolicies 'Microsoft.KeyVault/vaults/accessPolicies@2024-1
   }
 }
 
-output appServicePlanName string = appServicePlan.name
 output appName string = functionApp.name

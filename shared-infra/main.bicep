@@ -1,11 +1,16 @@
+import {
+  getStorageAccountName
+  getUniqueResourceName
+} from 'functions.bicep'
+
 param projectName string
 param integrationName string
 param location string = resourceGroup().location
 
-var resourceName = '${projectName}-${integrationName}'
+var name = '${projectName}-${integrationName}'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
-  name: replace('st${resourceName}', '-', '')
+  name: getStorageAccountName(name, 1)
   location: location
   kind: 'StorageV2'
   sku: {
@@ -20,7 +25,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
 }
 
 resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' = {
-  name: 'kv-${resourceName}'
+  name: getUniqueResourceName('kv', name)
   location: location
   properties: {
     enableSoftDelete: true

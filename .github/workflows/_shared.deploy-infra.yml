@@ -17,8 +17,8 @@ jobs:
         working-directory: ${{ env.SHARED_INFRA_DIRECTORY }}
         run: |
           az bicep install
-          az bicep build -f shared.bicep
-          az bicep build-params -f shared.bicepparam --outfile parameters.json
+          az bicep build -f main.bicep
+          az bicep build-params -f main.bicepparam --outfile parameters.json
 
       - name: Upload infrastructure artifact
         uses: actions/upload-artifact@v4

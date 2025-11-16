@@ -1,4 +1,4 @@
 using './shared.bicep'
 
-param projectName = 'integrations'
+param projectName = 'int'
 param integrationName = 'shared'

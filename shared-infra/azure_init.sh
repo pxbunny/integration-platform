@@ -10,7 +10,7 @@ SUBSCRIPTION_ID=$(az account show --query id --output tsv)
 read -p "Enter project name (allowed chars: a-z, 0-9, -, _). Prefixes 'rg-' and 'sp-' will be added automatically: " PROJECT_NAME
 
 while [[ ! $PROJECT_NAME =~ ^[a-zA-Z0-9_-]+$ ]]; do
-  echo "Invalid name! Only letters, numbers, hyphens and underscores allowed."
+  echo "Invalid name! Only letters, numbers, hyphens, and underscores allowed."
   read -p "Enter valid resource group name: " PROJECT_NAME
 done
 

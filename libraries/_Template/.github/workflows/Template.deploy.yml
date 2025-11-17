@@ -17,8 +17,8 @@ on:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy Integration
-    uses: ./.github/workflows/_reusable.deploy-integration.yml
+    name: R05 Build and Deploy Integration
+    uses: ./.github/workflows/_R05.deploy-integration.yml
     with:
       infra-directory: ./integrations/Template/infra
       integration-directory: ./integrations/Template

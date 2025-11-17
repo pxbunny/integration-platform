@@ -1,4 +1,4 @@
-name: Reusable - Deploy Bicep Infrastructure
+name: Reusable (R02) - Deploy Bicep Infrastructure
 
 on:
   workflow_call:

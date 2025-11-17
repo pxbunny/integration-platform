@@ -1,12 +1,9 @@
-name: Reusable - Build Function App
+name: Reusable (R03) - Build Function App
 
 on:
   workflow_call:
     inputs:
       integration-directory:
-        required: true
-        type: string
-      project-directory:
         required: true
         type: string
 

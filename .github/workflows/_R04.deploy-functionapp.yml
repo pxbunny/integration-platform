@@ -1,4 +1,4 @@
-name: Reusable - Deploy Function App
+name: Reusable (R04) - Deploy Function App
 
 on:
   workflow_call:

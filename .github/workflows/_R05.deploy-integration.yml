@@ -33,8 +33,8 @@ jobs:
     needs: [build-infrastructure, build-functionapp]
     uses: ./.github/workflows/_R02.deploy-infra.yml
     secrets:
-      azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
-      azure-resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
+      azure-credentials: ${{ secrets.azure-credentials }}
+      azure-resource-group: ${{ secrets.azure-resource-group }}
 
   deploy-functionapp:
     name: R04 Deploy Function App
@@ -43,6 +43,6 @@ jobs:
     with:
       functionapp-name: ${{ needs.deploy-infrastructure.outputs.app-name }}
     secrets:
-      azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
-      azure-resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
+      azure-credentials: ${{ secrets.azure-credentials }}
+      azure-resource-group: ${{ secrets.azure-resource-group }}
 

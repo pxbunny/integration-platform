@@ -6,6 +6,9 @@ on:
       integration-directory:
         required: true
         type: string
+      project-directory:
+        required: true
+        type: string
 
 jobs:
   build-functionapp:
@@ -19,23 +22,23 @@ jobs:
         uses: actions/setup-dotnet@v4
 
       - name: Restore dependencies
-        working-directory: ${{ env.integration-directory }}
+        working-directory: ${{ inputs.integration-directory }}
         run: dotnet restore
 
       - name: Build
-        working-directory: ${{ env.integration-directory }}
+        working-directory: ${{ inputs.integration-directory }}
         run: dotnet build -c Release --no-restore
 
       - name: Test
-        working-directory: ${{ env.integration-directory }}
+        working-directory: ${{ inputs.integration-directory }}
         run: dotnet test -c Release --no-build
 
       - name: Publish
-        working-directory: ${{ env.integration-directory }}/src
+        working-directory: ${{ inputs.integration-directory }}/src
         run: dotnet publish -c Release --no-build -o ./publish
 
       - name: Package function app
-        working-directory: ${{ env.integration-directory }}/src
+        working-directory: ${{ inputs.integration-directory }}/src
         run: |
           cd publish
           zip -r ../../../../functionapp.zip .

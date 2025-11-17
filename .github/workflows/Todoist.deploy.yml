@@ -17,7 +17,6 @@ on:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy Integration
     uses: ./.github/workflows/_reusable.deploy-integration.yml
     with:
       infra-directory: ./integrations/Todoist/infra

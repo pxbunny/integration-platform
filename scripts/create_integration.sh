@@ -4,7 +4,7 @@ name=$1
 root_dir=$(git rev-parse --show-toplevel)
 
 if [ -z "$name" ]; then
-  echo "Usage: $0 <project-name>"
+  echo "Usage: $0 <integration-name>"
   exit 1
 fi
 

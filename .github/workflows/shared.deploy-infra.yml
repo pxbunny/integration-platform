@@ -1,4 +1,4 @@
-name: Shared - Deploy Infrastructure
+name: Shared
 
 on:
   workflow_dispatch:

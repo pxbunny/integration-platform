@@ -1,4 +1,4 @@
-name: GoogleDrive - Build and Deploy
+name: GoogleDrive
 
 on:
   push:

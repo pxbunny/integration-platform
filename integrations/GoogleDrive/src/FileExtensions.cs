@@ -10,15 +10,13 @@ internal static class FileExtensions
         CancellationToken cancellationToken)
     {
         using var stream = new MemoryStream();
+        using var zip = new ZipArchive(stream, ZipArchiveMode.Create, true);
 
-        using (var zip = new ZipArchive(stream, ZipArchiveMode.Create, true))
+        foreach (var file in files)
         {
-            foreach (var file in files)
-            {
-                var entry = zip.CreateEntry(file.Path, compressionLevel);
-                await using var entryStream = entry.Open();
-                await entryStream.WriteAsync(file.Content.AsMemory(0, file.Content.Length), cancellationToken);
-            }
+            var entry = zip.CreateEntry(file.Path, compressionLevel);
+            await using var entryStream = entry.Open();
+            await entryStream.WriteAsync(file.Content.AsMemory(0, file.Content.Length), cancellationToken);
         }
 
         return stream.ToArray();

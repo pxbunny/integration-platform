@@ -35,20 +35,71 @@ internal sealed class SetSubtaskLabels(ITodoistApi todoist, ILogger<SetSubtaskLa
 
     private async Task HandleFunctionAsync(CancellationToken cancellationToken)
     {
-        var tasks = (await todoist.GetAllTasksByFilterAsync("subtask", cancellationToken))
+        logger.LogInformation("Fetching subtask data...");
+
+        var todoistTasks = (await todoist.GetAllTasksByFilterAsync("subtask", cancellationToken))
             .Where(t => !string.IsNullOrWhiteSpace(t.ParentId)) // just to make sure
             .Where(t => !t.Labels.Contains(Constants.SubtaskLabel) || t.Labels.Count() > 1)
             .ToList();
 
-        if (tasks.Count == 0)
+        if (todoistTasks.Count == 0)
         {
             logger.LogInformation("No subtasks to update.");
             return;
         }
 
-        var updateRequest = new TodoistUpdateTaskRequest { Labels = [Constants.SubtaskLabel] };
-        var updatedCount = await todoist.UpdateTasksAsync(tasks, _ => updateRequest, cancellationToken: cancellationToken);
+        logger.LogInformation("Updating subtask labels...");
 
-        logger.LogInformation("Updated labels for {UpdatedCount} subtasks.", updatedCount);
+        var updatedCount = await UpdateLabelsAsync(todoistTasks, cancellationToken);
+
+        logger.LogInformation("Updating parent labels...");
+
+        var updatedParentsCount = await UpdateParentLabelsAsync(todoistTasks, cancellationToken);
+
+        logger.LogInformation("Updated labels for {UpdatedCount} subtasks ({UpdatedParentsCount} parents).",
+            updatedCount, updatedParentsCount);
+    }
+
+    private async Task<int> UpdateLabelsAsync(
+        IEnumerable<TodoistTask> todoistTasks,
+        CancellationToken cancellationToken)
+    {
+        var updateRequest = new TodoistUpdateTaskRequest { Labels = [Constants.SubtaskLabel] };
+
+        var updatedCount = await todoist.UpdateTasksAsync(
+            todoistTasks,
+            _ => updateRequest,
+            cancellationToken: cancellationToken);
+
+        return updatedCount;
+    }
+
+    private async Task<int> UpdateParentLabelsAsync(
+        IList<TodoistTask> todoistTasks,
+        CancellationToken cancellationToken)
+    {
+        var group = todoistTasks.GroupBy(t => t.ParentId).ToList();
+        var parentIds = group.Select(t => t.Key).ToList();
+
+        var parents = await todoist.GetAllTasksAsync(parentIds, cancellationToken);
+
+        var updatedCount = await todoist.UpdateTasksAsync(
+            parents,
+            parentTask =>
+            {
+                var subtaskLabels = group
+                    .FirstOrDefault(t => t.Key == parentTask.Id)
+                    ?.SelectMany(t => t.Labels) ?? [];
+
+                var newLabels = parentTask.Labels
+                    .Concat(subtaskLabels)
+                    .Distinct()
+                    .Where(l => l != Constants.SubtaskLabel);
+
+                return new TodoistUpdateTaskRequest { Labels = newLabels };
+            },
+            cancellationToken: cancellationToken);
+
+        return updatedCount;
     }
 }

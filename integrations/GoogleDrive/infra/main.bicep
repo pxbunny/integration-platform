@@ -7,8 +7,8 @@ param googleDriveJsonCredentialsSecretName string
 param googleApplicationName string
 param concurrentDownloads int
 param accountingDocumentationDriveFolderId string
-param accountingDocumentationBackupsContainerName string
-param accountingDocumentationBackupsFileNamePrefix string
+param accountingDocumentationBackupContainerName string
+param accountingDocumentationBackupFileNamePrefix string
 param accountingDocumentationBackupCronSchedule string
 param timeZone string
 
@@ -55,12 +55,12 @@ module functionApp '../../../shared-infra/modules/functionApp.bicep' = {
         value: accountingDocumentationDriveFolderId
       }
       {
-        name: 'AccountingDocumentation__BackupsContainerName'
-        value: accountingDocumentationBackupsContainerName
+        name: 'AccountingDocumentation__BackupContainerName'
+        value: accountingDocumentationBackupContainerName
       }
       {
-        name: 'AccountingDocumentation__BackupsFileNamePrefix'
-        value: accountingDocumentationBackupsFileNamePrefix
+        name: 'AccountingDocumentation__BackupFileNamePrefix'
+        value: accountingDocumentationBackupFileNamePrefix
       }
     ]
     sharedAppServicePlanName: sharedAppServicePlanName

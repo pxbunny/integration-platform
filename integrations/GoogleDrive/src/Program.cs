@@ -23,5 +23,6 @@ using var exportService = DriveExportService.Create(
     int.Parse(builder.Configuration["ConcurrentDownloads"]!, CultureInfo.InvariantCulture));
 
 builder.Services.AddSingleton(exportService);
+builder.Services.AddScoped<BackupRepository>();
 
 builder.Build().Run();

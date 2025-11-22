@@ -6,7 +6,7 @@ internal sealed class AccountingDocumentationOptions
 
     public string DriveFolderId { get; init; } = null!;
 
-    public string BackupsContainerName { get; init; } = null!;
+    public string BackupContainerName { get; init; } = null!;
 
-    public string BackupsFileNamePrefix { get; init; } = null!;
+    public string BackupFileNamePrefix { get; init; } = null!;
 }

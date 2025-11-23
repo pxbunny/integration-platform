@@ -10,7 +10,13 @@ internal sealed class TimerTriggerFunction(ILogger<TimerTriggerFunction> logger)
 {
     [Function(nameof(TimerTriggerFunction))]
     public async Task RunAsync(
-        [TimerTrigger("%CronSchedule%", UseMonitor = false)] TimerInfo _,
+        [TimerTrigger(
+            "%CronSchedule%",
+            UseMonitor = false
+#if DEBUG
+            , RunOnStartup = true
+#endif
+            )] TimerInfo _,
         CancellationToken cancellationToken)
     {
         logger.LogInformation("Timer trigger function executed at: {DateTime}", DateTime.Now);

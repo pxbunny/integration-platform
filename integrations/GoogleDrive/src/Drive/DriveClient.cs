@@ -21,7 +21,7 @@ internal sealed class DriveClient : IDisposable
     {
         var credential = CredentialFactory.FromJson<ServiceAccountCredential>(options.JsonCredentials)
             .ToGoogleCredential()
-            .CreateScoped(DriveService.Scope.Drive);
+            .CreateScoped(DriveService.Scope.DriveReadonly);
 
         var drive = new DriveService(new BaseClientService.Initializer
         {

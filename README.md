@@ -1,5 +1,5 @@
 # Integration Platform
 
-![shared workflow](https://github.com/pxbunny/integration-platform/actions/workflows/shared.deploy-infra.yml/badge.svg)
-![Google Drive workflow](https://github.com/pxbunny/integration-platform/actions/workflows/GoogleDrive.deploy.yml/badge.svg)
-![Todoist workflow](https://github.com/pxbunny/integration-platform/actions/workflows/Todoist.deploy.yml/badge.svg)
+![Shared workflow](https://img.shields.io/github/actions/workflow/status/pxbunny/integration-platform/shared.deploy-infra.yml?label=Shared)
+![Google Drive workflow](https://img.shields.io/github/actions/workflow/status/pxbunny/integration-platform/GoogleDrive.deploy.yml?label=Google%20Drive)
+![Todoist workflow](https://img.shields.io/github/actions/workflow/status/pxbunny/integration-platform/Todoist.deploy.yml?label=Todoist)

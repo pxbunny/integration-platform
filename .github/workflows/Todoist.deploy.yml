@@ -1,4 +1,4 @@
-name: Todoist
+name: Todoist - Build and Deploy
 
 on:
   push:

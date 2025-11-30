@@ -6,12 +6,16 @@ on:
     paths:
       - 'integrations/Todoist/infra/**'
       - 'integrations/Todoist/src/**'
+      - 'Directory.*.props'
+      - 'global.json'
 
   pull_request:
     branches: [ main ]
     paths:
       - 'integrations/Todoist/infra/**'
       - 'integrations/Todoist/src/**'
+      - 'Directory.*.props'
+      - 'global.json'
 
   workflow_dispatch:
 

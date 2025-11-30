@@ -6,12 +6,16 @@ on:
     paths:
       - 'integrations/GoogleDrive/infra/**'
       - 'integrations/GoogleDrive/src/**'
+      - 'Directory.*.props'
+      - 'global.json'
 
   pull_request:
     branches: [ main ]
     paths:
       - 'integrations/GoogleDrive/infra/**'
       - 'integrations/GoogleDrive/src/**'
+      - 'Directory.*.props'
+      - 'global.json'
 
   workflow_dispatch:
 

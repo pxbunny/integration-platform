@@ -12,7 +12,7 @@ internal sealed class RemoveSubtaskLabels(ITodoistApi todoist, ILogger<RemoveSub
     [Function(nameof(RemoveSubtaskLabels))]
     public async Task RunAsync(
         [TimerTrigger(
-            "%SubtaskLabelsCheckSchedule%",
+            "%RemoveSubtaskLabelsSchedule%",
             UseMonitor = false
 #if DEBUG
             , RunOnStartup = true

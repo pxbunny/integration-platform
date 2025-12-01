@@ -12,7 +12,7 @@ internal sealed class SetSubtaskLabels(ITodoistApi todoist, ILogger<SetSubtaskLa
     [Function(nameof(SetSubtaskLabels))]
     public async Task RunAsync(
         [TimerTrigger(
-            "%SubtaskLabelsCheckSchedule%",
+            "%SetSubtaskLabelsSchedule%",
             UseMonitor = false
 #if DEBUG
             , RunOnStartup = true

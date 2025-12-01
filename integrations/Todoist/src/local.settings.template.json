@@ -6,6 +6,7 @@
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "TodoistApiBaseUrl": "https://api.todoist.com/api/v1",
     "TodoistApiKey": "<todoist-api-key>",
-    "SubtaskLabelsCheckSchedule":  "0 0 2 * * *"
+    "SetSubtaskLabelsSchedule": "0 0 2 * * *",
+    "RemoveSubtaskLabelsSchedule": "0 15 2 * * *"
   }
 }

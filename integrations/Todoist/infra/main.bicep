@@ -5,7 +5,8 @@ param sharedStorageAccountName string
 param sharedKeyVaultName string
 param todoistApiKeySecretName string
 param todoistApiBaseUrl string
-param subtaskLabelsCheckSchedule string
+param setSubtaskLabelsSchedule string
+param removeSubtaskLabelsSchedule string
 param timeZone string
 
 resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = {
@@ -27,8 +28,12 @@ module functionApp '../../../shared-infra/modules/functionApp.bicep' = {
         value: '@Microsoft.KeyVault(VaultName=${keyVault.name};SecretName=${todoistApiKeySecretName})'
       }
       {
-        name: 'SubtaskLabelsCheckSchedule'
-        value: subtaskLabelsCheckSchedule
+        name: 'SetSubtaskLabelsSchedule'
+        value: setSubtaskLabelsSchedule
+      }
+      {
+        name: 'RemoveSubtaskLabelsSchedule'
+        value: removeSubtaskLabelsSchedule
       }
     ]
     sharedAppServicePlanName: sharedAppServicePlanName

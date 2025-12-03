@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using Integrations.Todoist;
 using Integrations.Todoist.TodoistClient;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,13 +17,11 @@ builder.Services
     })
     .ConfigureHttpClient(client =>
     {
-        const string baseUrlPropertyName = "TodoistApiBaseUrl";
-        const string apiKeyPropertyName = "TodoistApiKey";
+        var baseUrl = builder.Options.TodoistApiBaseUrl;
+        var apiKey = builder.Options.TodoistApiKey;
 
-        var baseUrl = builder.Configuration[baseUrlPropertyName]
-                      ?? throw new InvalidOperationException($"'{baseUrlPropertyName}' missing in configuration");
-        var apiKey = builder.Configuration[apiKeyPropertyName]
-                     ?? throw new InvalidOperationException($"'{apiKeyPropertyName}' missing in configuration");
+        if (string.IsNullOrWhiteSpace(baseUrl) || string.IsNullOrWhiteSpace(apiKey))
+            throw new InvalidOperationException("Invalid Todoist API configuration");
 
         client.BaseAddress = new Uri(baseUrl);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);

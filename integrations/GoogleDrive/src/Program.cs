@@ -9,12 +9,13 @@ var builder = FunctionsApplication.CreateBuilder(args);
 
 builder.ConfigureFunctionsWebApplication();
 
-builder.Services.Configure<List<BackupOptions>>(builder.Configuration.GetSection(BackupOptions.SectionName));
-builder.Services.Configure<List<GoogleDriveOptions>>(builder.Configuration.GetSection(GoogleDriveOptions.SectionName));
+builder.Services.Configure<List<BackupOptions>>(builder.Options.Backup);
+builder.Services.Configure<List<GoogleDriveOptions>>(builder.Options.GoogleDrive);
 
 builder.Services.AddAzureClients(azureBuilder =>
 {
-    azureBuilder.AddSecretClient(new Uri(builder.Configuration["KeyVaultUri"]!));
+    var keyVaultUri = builder.Options.KeyVaultUri ?? throw new InvalidOperationException("'KeyVaultUri' not set");
+    azureBuilder.AddSecretClient(new Uri(keyVaultUri));
 });
 
 builder.Services.AddScoped<BackupOptionsResolver>();

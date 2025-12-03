@@ -5,7 +5,7 @@ namespace Integrations.GoogleDrive.Backups;
 
 internal sealed class BackupOptionsResolver(
     IOptions<List<BackupOptions>> backupOptionList,
-    IOptions<List<GoogleDriveOptions>> googleDriveOptionList)
+    IOptionsSnapshot<List<GoogleDriveOptions>> googleDriveOptionList)
 {
     public (BackupOptions BackupOptions, GoogleDriveOptions GoogleDriveOptions) Resolve(BackupType backupType)
     {

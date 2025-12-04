@@ -63,7 +63,7 @@ internal sealed class CountTasksInProjects(
             .CountTasks(projects, tasks);
 
         var contract = new NumberOfTasksInProjects(
-            NextAction: nextActionsProjectTasksCount,
+            NextActions: nextActionsProjectTasksCount,
             Someday: somedayProjectTasksCount,
             Recurring: recurringProjectTasksCount);
 

@@ -26,7 +26,6 @@ resource sbqinttodoistnumberoftaskstmp 'Microsoft.ServiceBus/namespaces/queues@2
     duplicateDetectionHistoryTimeWindow: 'PT10M'
     maxDeliveryCount: 10
     status: 'Active'
-    autoDeleteOnIdle: 'P10675199DT2H48M5.4775807S'
     enablePartitioning: false
     enableExpress: false
   }

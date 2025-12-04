@@ -7,8 +7,13 @@ param integrationName string
 
 var name = '${projectName}-${integrationName}-${queueName}'
 
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' existing = {
+  name: parentName
+}
+
 resource sbqinttodoistnumberoftaskstmp 'Microsoft.ServiceBus/namespaces/queues@2024-01-01' = {
-  name: '${parentName}/${getResourceName('sbq', name)}'
+  name: getResourceName('sbq', name)
+  parent: serviceBusNamespace
   properties: {
     maxMessageSizeInKilobytes: 256
     lockDuration: 'PT1M'

@@ -7,6 +7,7 @@ param todoistApiKeySecretName string
 param todoistApiBaseUrl string
 param setSubtaskLabelsSchedule string
 param removeSubtaskLabelsSchedule string
+param removeDueDateFromSubtasksSchedule string
 param timeZone string
 
 resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = {
@@ -34,6 +35,10 @@ module functionApp '../../../shared-infra/modules/functionApp.bicep' = {
       {
         name: 'RemoveSubtaskLabelsSchedule'
         value: removeSubtaskLabelsSchedule
+      }
+      {
+        name: 'RemoveDueDateFromSubtasksSchedule'
+        value: removeDueDateFromSubtasksSchedule
       }
     ]
     sharedAppServicePlanName: sharedAppServicePlanName

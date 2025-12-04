@@ -64,7 +64,7 @@ internal sealed class SetSubtaskLabels(ITodoistApi todoist, ILogger<SetSubtaskLa
         IEnumerable<TodoistTask> todoistTasks,
         CancellationToken cancellationToken)
     {
-        var updateRequest = new TodoistUpdateTaskRequest { Labels = [Constants.SubtaskLabel] };
+        var updateRequest = new { labels = new[] { Constants.SubtaskLabel } };
 
         var updatedCount = await todoist.UpdateTasksAsync(
             todoistTasks,
@@ -96,7 +96,7 @@ internal sealed class SetSubtaskLabels(ITodoistApi todoist, ILogger<SetSubtaskLa
                     .Distinct()
                     .Where(l => l != Constants.SubtaskLabel);
 
-                return new TodoistUpdateTaskRequest { Labels = newLabels };
+                return new { labels = newLabels };
             },
             cancellationToken: cancellationToken);
 

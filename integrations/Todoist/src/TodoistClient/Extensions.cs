@@ -38,7 +38,7 @@ internal static class Extensions
 
     public static async Task<int> UpdateTasksAsync(this ITodoistApi api,
         IEnumerable<TodoistTask> tasks,
-        Func<TodoistTask, TodoistUpdateTaskRequest> createRequestBody,
+        Func<TodoistTask, object> createRequestBody,
         int concurrentRequests = 5,
         CancellationToken cancellationToken = default)
     {

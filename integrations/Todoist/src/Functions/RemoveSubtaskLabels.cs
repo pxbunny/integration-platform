@@ -46,9 +46,9 @@ internal sealed class RemoveSubtaskLabels(ITodoistApi todoist, ILogger<RemoveSub
 
         var updatedCount = await todoist.UpdateTasksAsync(
             tasks,
-            task => new TodoistUpdateTaskRequest
+            task => new
             {
-                Labels = task.Labels.Where(label => label != Constants.SubtaskLabel)
+                labels = task.Labels.Where(label => label != Constants.SubtaskLabel)
             },
             cancellationToken: cancellationToken);
 

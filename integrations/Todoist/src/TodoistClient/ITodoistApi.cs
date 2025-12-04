@@ -19,6 +19,6 @@ internal interface ITodoistApi
     [Post("/tasks/{taskId}")]
     Task UpdateTaskAsync(
         string taskId,
-        [Body] TodoistUpdateTaskRequest request,
+        [Body] object request,
         CancellationToken cancellationToken = default);
 }

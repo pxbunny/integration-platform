@@ -10,11 +10,6 @@ internal sealed record TodoistTask(
     string Id,
     [JsonProperty(PropertyName = "parent_id")] string ParentId,
     IEnumerable<string> Labels,
+    object? Due, // TODO: specify type if needed
     string Content,
     string Description);
-
-internal sealed class TodoistUpdateTaskRequest
-{
-    [JsonProperty(PropertyName = "labels")]
-    public IEnumerable<string>? Labels { get; set; }
-}

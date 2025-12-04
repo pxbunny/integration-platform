@@ -47,3 +47,16 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
     tier: 'Dynamic'
   }
 }
+
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
+  name: getResourceName('sbns', name)
+  location: location
+  properties: {
+    minimumTlsVersion: '1.2'
+    publicNetworkAccess: 'Enabled'
+  }
+  sku: {
+    name: 'Basic'
+    tier: 'Basic'
+  }
+}

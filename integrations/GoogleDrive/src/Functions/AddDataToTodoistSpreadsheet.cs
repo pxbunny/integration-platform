@@ -1,4 +1,4 @@
-﻿using Integrations.GoogleDrive.Contracts;
+﻿using Integrations.Contracts.Todoist;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 

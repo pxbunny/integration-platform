@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using Integrations.Todoist.Contracts;
+using Integrations.Contracts.Todoist;
 using Integrations.Todoist.Options;
 using Integrations.Todoist.TodoistClient;
 using Microsoft.Azure.Functions.Worker;

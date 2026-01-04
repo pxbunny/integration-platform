@@ -15,8 +15,8 @@ internal sealed class CountTasksInProjects(
 {
     private readonly TodoistProjectIdsOptions _projectIds = options.Value;
 
-    [Function(nameof(CountTasksInProjects))]
-    [ServiceBusOutput("%NumberOfTasksServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
+    //[Function(nameof(CountTasksInProjects))]
+    //[ServiceBusOutput("%NumberOfTasksServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
     public async Task<string> RunAsync(
         [TimerTrigger(
             "%CountTasksInProjectsSchedule%",

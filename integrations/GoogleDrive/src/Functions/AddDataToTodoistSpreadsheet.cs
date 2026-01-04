@@ -6,7 +6,7 @@ namespace Integrations.GoogleDrive.Functions;
 
 internal sealed class AddDataToTodoistSpreadsheet(ILogger<AddDataToTodoistSpreadsheet> logger)
 {
-    [Function(nameof(AddDataToTodoistSpreadsheet))]
+    //[Function(nameof(AddDataToTodoistSpreadsheet))]
     public async Task Run(
         [ServiceBusTrigger("%NumberOfTasksServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
         NumberOfTasksInProjects message,

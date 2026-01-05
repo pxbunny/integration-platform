@@ -1,4 +1,4 @@
-import { getResourceName } from '../functions.bicep'
+import { getResourceName } from '../lib/naming.bicep'
 
 param parentName string
 param queueName string

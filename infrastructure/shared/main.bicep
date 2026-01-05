@@ -1,4 +1,4 @@
-import { getResourceName, getUniqueResourceName } from 'functions.bicep'
+import { getResourceName, getUniqueResourceName } from '../lib/naming.bicep'
 
 param projectName string
 param integrationName string
@@ -6,7 +6,7 @@ param location string = resourceGroup().location
 
 var name = '${projectName}-${integrationName}'
 
-module storageAccount 'modules/storageAccount.bicep' = {
+module storageAccount '../modules/storageAccount.bicep' = {
   name: 'storageAccountDeploy'
   params: {
     projectName: projectName

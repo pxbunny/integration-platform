@@ -8,7 +8,7 @@ jobs:
     name: R01 Build Bicep Infrastructure
     uses: ./.github/workflows/_R01.build-infra.yml
     with:
-      infra-directory: ./shared-infra
+      infra-directory: ./infrastructure/shared
 
   deploy-infrastructure:
     name: R02 Deploy Infrastructure

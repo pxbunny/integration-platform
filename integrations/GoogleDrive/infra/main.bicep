@@ -23,7 +23,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = {
   name: sharedKeyVaultName
 }
 
-module functionApp '../../../shared-infra/modules/functionApp.bicep' = {
+module functionApp '../../../infrastructure/modules/functionApp.bicep' = {
   name: 'functionAppDeploy'
   params: {
     projectName: projectName

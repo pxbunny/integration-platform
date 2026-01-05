@@ -1,4 +1,4 @@
-import { getStorageAccountName } from '../functions.bicep'
+import { getStorageAccountName } from '../lib/naming.bicep'
 
 param projectName string
 param integrationName string

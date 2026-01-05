@@ -15,7 +15,7 @@ param todoistSomedayProjectId string
 param todoistRecurringProjectId string
 param timeZone string
 
-module numberOfTasksServiceBusQueue '../../../shared-infra/modules/serviceBusQueue.bicep' = {
+module numberOfTasksServiceBusQueue '../../../infrastructure/modules/serviceBusQueue.bicep' = {
   name: 'numberOfTasksServiceBusQueueDeploy'
   params: {
     parentName: sharedServiceBusNamespaceName
@@ -25,7 +25,7 @@ module numberOfTasksServiceBusQueue '../../../shared-infra/modules/serviceBusQue
   }
 }
 
-module functionApp '../../../shared-infra/modules/functionApp.bicep' = {
+module functionApp '../../../infrastructure/modules/functionApp.bicep' = {
   name: 'functionAppDeploy'
   params: {
     projectName: projectName

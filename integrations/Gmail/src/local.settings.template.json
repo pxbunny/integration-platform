@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "WEBSITE_TIME_ZONE": "Central European Standard Time",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "Smtp__Host": "smtp.gmail.com",
+    "Smtp__Port": "587",
+    "Smtp__User": "<email-address>",
+    "Smtp__Password": "",
+    "Smtp__From": "<email-address>",
+    "Smtp__FromName": "Integration Platform",
+    "Smtp__UseSsl": "false"
+  }
+}

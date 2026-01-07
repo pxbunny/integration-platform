@@ -1,7 +1,7 @@
 using './main.bicep'
 
 param projectName = 'int'
-param integrationName = toLower('GoogleDrive')
+param integrationName = 'googledrive'
 param sharedAppServicePlanName = 'asp-int-shared'
 param sharedStorageAccountName = 'stintsharedg7lv'
 param sharedKeyVaultName = 'kv-int-shared-k4h7'

@@ -1,10 +1,15 @@
 using './main.bicep'
 
 param projectName = 'int'
-param integrationName = toLower('Template')
+param integrationName = 'gmail'
 param sharedAppServicePlanName = 'asp-int-shared'
 param sharedStorageAccountName = 'stintsharedg7lv'
 param sharedKeyVaultName = 'kv-int-shared-k4h7'
 param sharedServiceBusNamespaceName = 'sbns-int-shared'
 param timeZone = 'Central European Standard Time'
-param cronSchedule = '0 0 0 */7 * *'
+param smtpHost = 'smtp.gmail.com'
+param smtpPort = '587'
+param smtpUserSecretName = 'Gmail-EmailAddress'
+param smtpPasswordSecretName = 'Gmail-SmtpPassword'
+param smtpFromName = 'Integration Platform'
+param smtpUseSsl = 'false'

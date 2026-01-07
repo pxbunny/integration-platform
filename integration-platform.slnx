@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/integrations/">
+    <Project Path="integrations/Gmail/src/Gmail.csproj" />
     <Project Path="integrations/GoogleDrive/src/GoogleDrive.csproj" />
     <Project Path="integrations/Todoist/src/Todoist.csproj" />
     <!-- <Project Path="integrations/_GoogleTokenRetriever/_GoogleTokenRetriever.csproj" /> -->

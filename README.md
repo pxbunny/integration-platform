@@ -7,6 +7,12 @@
 
 > Platform for running automated workflows between external services.
 
+## Repository setup
+
+```bash
+./init.sh
+```
+
 ## Add a new integration
 
 From a bash shell:

@@ -2,22 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Integrations.Gmail.Options;
 using Integrations.Gmail.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MimeKit;
 
 namespace Integrations.Gmail.Functions;
 
 internal sealed record SendEmailRequest(
-    string To,
+    string? To,
     string Subject,
     string Body,
     bool IsHtml = false);
 
-internal sealed class SendEmail(EmailSenderService emailSender, ILogger<SendEmail> logger)
+internal sealed class SendEmail(
+    EmailSenderService emailSender,
+    IOptions<SmtpOptions> options,
+    ILogger<SendEmail> logger)
 {
     [Function("SendEmail")]
     public async Task<IResult> RunAsync(
@@ -25,7 +30,11 @@ internal sealed class SendEmail(EmailSenderService emailSender, ILogger<SendEmai
         [FromBody] SendEmailRequest request,
         CancellationToken cancellationToken)
     {
-        if (!TryParseRecipients(request.To, out var recipients))
+        var recipientsStr = string.IsNullOrWhiteSpace(request.To)
+            ? options.Value.From
+            : request.To;
+
+        if (!TryParseRecipients(recipientsStr, out var recipients))
         {
             logger.LogError("Invalid email recipients.");
             return TypedResults.BadRequest();
@@ -49,9 +58,12 @@ internal sealed class SendEmail(EmailSenderService emailSender, ILogger<SendEmai
         return Results.Accepted("Email sent.");
     }
 
-    private static bool TryParseRecipients(string value, out List<MailboxAddress> recipients)
+    private static bool TryParseRecipients(string? value, out List<MailboxAddress> recipients)
     {
         recipients = [];
+
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
 
         const StringSplitOptions options =
             StringSplitOptions.RemoveEmptyEntries |
@@ -69,5 +81,4 @@ internal sealed class SendEmail(EmailSenderService emailSender, ILogger<SendEmai
 
         return recipients.Count > 0;
     }
-
 }

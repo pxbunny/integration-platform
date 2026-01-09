@@ -14,7 +14,8 @@ paths:
       summary: Send an email
       description: Sends an email using configured SMTP settings.
       security:
-        - functionKey: []
+        - functionKeyQuery: []
+        - functionKeyHeader: []
       requestBody:
         required: true
         content:
@@ -39,14 +40,21 @@ paths:
 
 components:
   securitySchemes:
-    functionKey:
+    functionKeyQuery:
       type: apiKey
       in: query
       name: code
+    functionKeyHeader:
+      type: apiKey
+      in: header
+      name: x-functions-key
 
   schemas:
     SendEmailRequest:
       type: object
+      required:
+        - subject
+        - body
       properties:
         to:
           type: string
@@ -54,10 +62,8 @@ components:
           description: Optional recipients list separated by comma or semicolon. Defaults to SmtpOptions.From when omitted.
         subject:
           type: string
-          required: true
         body:
           type: string
-          required: true
         isHtml:
           type: boolean
           default: false

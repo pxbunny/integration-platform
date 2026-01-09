@@ -5,7 +5,7 @@ info:
   description: API for sending emails via the SendEmail function.
   version: 0.0.0
 servers:
-  - url: https://FUNCTION_APP.azurewebsites.net
+  - url: https://func-int-gmail.azurewebsites.net
 
 paths:
   /api/send-email:

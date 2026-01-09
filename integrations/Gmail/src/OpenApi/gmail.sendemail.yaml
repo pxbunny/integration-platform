@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.1
 
 info:
   title: Integration Platform - SendEmail
@@ -31,11 +31,11 @@ paths:
                   body: "Hello Chandler, how are you?"
                   isHtml: false
       responses:
-        202:
+        "202":
           description: Accepted
-        400:
+        "400":
           description: Invalid recipients or request.
-        500:
+        "500":
           description: Server error while sending email.
 
 components:

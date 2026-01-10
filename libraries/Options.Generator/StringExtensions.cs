@@ -6,9 +6,6 @@ internal static class StringExtensions
 {
     public static string AddIndent(this string text, int indent)
     {
-        if (string.IsNullOrEmpty(text))
-            return text;
-
         if (indent < 0)
             throw new ArgumentOutOfRangeException(nameof(indent), "indent is less than zero");
 

@@ -1,4 +1,3 @@
-using Integrations.Gmail.Options;
 using Integrations.Gmail.Services;
 using Integrations.Options;
 using Microsoft.Azure.Functions.Worker.Builder;
